@@ -12,13 +12,14 @@ function Navbar() {
           href="/crop-suggestion" // Link to Crop suggestion page
           className="text-lg capitalize font-light transition-all duration-300 ease-in-out neumorphism-link"
         >
-          Crop suggestion
+          crop suggestion
         </a>
         <a
-          href="../genai hack/index.html" // Relative path to the index.html in genai hack
+          href="/index.html"
+          target="_blank" // Relative path to the index.html in genai hack
   className="text-lg capitalize font-light transition-all duration-300 ease-in-out neumorphism-link"
         >
-          Disease detection
+          AI farmer chatbot
         </a>
         <a
           href="/resources" // Link to Resources page
