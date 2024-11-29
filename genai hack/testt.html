@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test OpenAI API</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+</head>
+<body>
+  <h1>Test OpenAI API</h1>
+  <button id="testButton">Test OpenAI</button>
+  <p id="responseText"></p>
+
+  <script>
+    // Function to make the OpenAI API request
+    async function testOpenAI() {
+      try {
+        const response = await axios.post('http://localhost:3000/chat', {
+          message: 'Tell me about farming advice.',
+          crop: 'tomato',  // Example crop
+          city: 'Delhi',   // Example city
+          userLanguage: 'en'
+        });
+
+        // Display the response from OpenAI
+        document.getElementById('responseText').innerText = response.data.reply;
+      } catch (error) {
+        console.error('Error with OpenAI API:', error);
+        document.getElementById('responseText').innerText = 'Sorry, there was an issue with the OpenAI API.';
+      }
+    }
+
+    // Event listener for button click
+    document.getElementById('testButton').addEventListener('click', testOpenAI);
+  </script>
+</body>
+</html>

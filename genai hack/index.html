@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Advice & Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Farming Advice & Weather App</h1>
+
+    <h2>Get Farming Advice</h2>
+    <textarea id="farmingPrompt" rows="4" cols="50" placeholder="Enter farming advice prompt..."></textarea><br><br>
+    <button id="getFarmingAdvice">Get Farming Advice</button>
+
+    <h2>Get Weather</h2>
+    <input type="text" id="city" placeholder="Enter city name" />
+    <button id="getWeather">Get Weather</button>
+
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('getFarmingAdvice').addEventListener('click', async function () {
+            const prompt = document.getElementById('farmingPrompt').value;
+            const response = await fetch('http://localhost:3000/getFarmingAdvice', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt: prompt }),
+            });
+            const data = await response.json();
+            document.getElementById('output').innerHTML = `<h3>Farming Advice:</h3><p>${data[0].generated_text}</p>`;
+        });
+
+        document.getElementById('getWeather').addEventListener('click', async function () {
+            const city = document.getElementById('city').value;
+            const response = await fetch(`http://localhost:3000/getWeather?city=${city}`);
+            const data = await response.json();
+            const weather = data.weather[0].description;
+            const temperature = data.main.temp;
+
+            document.getElementById('output').innerHTML = `<h3>Weather for ${city}:</h3>
+                <p>Weather: ${weather}</p>
+                <p>Temperature: ${temperature}°C</p>`;
+        });
+    </script>
+
+</body>
+</html>
