@@ -6,5 +6,5 @@
 - **Backend:** Python 🐍, OpenAI (GPT-4) 🤖, Pandas 📊, NumPy ➗
 - **Frontend:** HTML, CSS, JavaScript, Flask/Django (optional) 🖥️
 - **APIs:** Hugging Face 🤗, OpenWeatherMap API 🌦️
-- **Database:** MongoDB (optional for storing user data or recommendations) 🗄️
+
 
